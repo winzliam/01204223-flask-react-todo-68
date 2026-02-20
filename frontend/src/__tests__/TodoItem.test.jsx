@@ -16,6 +16,7 @@ describe('TodoItem', () => {
 			<TodoItem todo={baseTodo} />
 		);
 		expect(screen.getByText('Sample Todo')).toBeInTheDocument();
+		expect(screen.getByText('No comments')).toBeInTheDocument();
 	});
 	it('renders with comments correctly', () => {
     const todoWithComment = {
@@ -29,9 +30,19 @@ describe('TodoItem', () => {
       <TodoItem todo={todoWithComment} />
     );
     expect(screen.getByText('Sample Todo')).toBeInTheDocument();
-    //
     expect(screen.getByText('First comment')).toBeInTheDocument();
   	expect(screen.getByText('Another comment')).toBeInTheDocument();
-    //
+    });
+    it('does not show no comments message when it has a comment', () => {
+    const todoWithComment = {
+      ...baseTodo,
+      comments: [
+        {id: 1, message: 'First comment'},
+      ]
+    };
+    render(
+      <TodoItem todo={todoWithComment} />
+    );
+    expect(screen.queryByText('No comments')).not.toBeInTheDocument();
   });
 });
