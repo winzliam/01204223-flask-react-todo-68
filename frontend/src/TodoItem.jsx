@@ -9,7 +9,12 @@ function TodoItem({todo, toggleDone, deleteTodo, addNewComment}) {
       <span className={todo.done ? "done" : ""}>{todo.title}</span>
 
       <button onClick={() => {toggleDone(todo.id)}}>Toggle</button>
-      <button onClick={() => {deleteTodo(todo.id)}}>❌</button>
+      <button
+        aria-label="delete"
+        onClick={() => deleteTodo(todo.id)}
+      >
+        ❌
+      </button>
 
       {/* แสดงจำนวน comments เสมอ */}
       <p>{todo.comments.length} comments</p>
