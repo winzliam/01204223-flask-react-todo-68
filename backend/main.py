@@ -7,19 +7,11 @@ import click
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask_jwt_extended import JWTManager
 import os
-<<<<<<< HEAD
-=======
 from flask import send_from_directory
->>>>>>> 5d88a18 (webdevelopment)
 
 
 app = Flask(__name__)
 CORS(app)
-<<<<<<< HEAD
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI','sqlite:///todos.db')
-=======
->>>>>>> 5d88a18 (webdevelopment)
 
 try:
     from local_config import CONFIG_DB_URI, CONFIG_JWT_SECRET
@@ -45,10 +37,6 @@ todo_list = [
 ]
 
 
-<<<<<<< HEAD
-app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY','fdslkfjsdlkufewhjroiewurewrew')
-=======
->>>>>>> 5d88a18 (webdevelopment)
 jwt = JWTManager(app)
 
 @app.route('/api/todos/', methods=['GET'])

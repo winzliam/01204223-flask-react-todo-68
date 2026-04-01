@@ -1,11 +1,7 @@
 /venv
 __pycache__
 /instance
-<<<<<<< HEAD
-.env
-=======
 .env
 /frontend-static
 /local_config.py
 *.json
->>>>>>> 5d88a18 (webdevelopment)
