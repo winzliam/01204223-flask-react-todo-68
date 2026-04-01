@@ -5,15 +5,15 @@ from flask_jwt_extended.config import config
 
 @pytest.fixture(autouse=True)
 def no_jwt(monkeypatch):
-    # from https://github.com/vimalloc/flask-jwt-extended/issues/171
-    def no_verify(*args, **kwargs):
-        g._jwt_extended_jwt = {
-            config.identity_claim_key: 'test_user'
-        }
-
-    from flask_jwt_extended import view_decorators
-
-    monkeypatch.setattr(view_decorators, 'verify_jwt_in_request', no_verify)
+    monkeypatch.setattr(
+        "flask_jwt_extended.view_decorators.verify_jwt_in_request",
+        lambda *args, **kwargs: None
+    )
+    # If routes call get_jwt_identity(), patch that too
+    monkeypatch.setattr(
+        "flask_jwt_extended.get_jwt_identity",
+        lambda: 1  # Return a fake user ID
+    )
 
 def test_get_empty_todo_items(client):
     response = client.get('/api/todos/')
