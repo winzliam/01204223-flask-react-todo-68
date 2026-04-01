@@ -113,7 +113,6 @@ def login():
     if not user or not user.check_password(data['password']):
         return jsonify({'error': 'Invalid username or password'}), 401
 
-    // ***** สร้าง token แล้วคืนค่ากลับไป
     access_token = create_access_token(identity=user.username)
     return jsonify(access_token=access_token)
 
